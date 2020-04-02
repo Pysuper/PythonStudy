@@ -18,6 +18,23 @@ def divideBy2(decNubmer):
 
     binString = ""
     while not remstack.isEmpty():
-        binString = binString + str(remstack.pop())
+        binString += str(remstack.pop())
 
     return binString
+
+
+# 将十进制数转换成任意进制数
+def baseConverter(decNumber, base):
+    digits = "0123456789ABCDEF"  # 创建一个数字字符串来存储对应位置上的数字 ==> 从栈中移除一个余数时，可用作访问数字的下标
+    remstack = Stack()
+
+    while decNumber > 0:
+        rem = decNumber % base
+        remstack.push(rem)
+        decNumber = decNumber // base  # "除以2" ==> "除以任意"
+
+    newString = ""
+    while not remstack.isEmpty():
+        newString += digits[remstack.pop()]
+
+    return newString
